@@ -42,12 +42,12 @@ export const Header = (props:Props) => {
     return (
         <Wrapper>
             <Content>
-                <Img><Link href="/"><Image width='200px' height='60px' src='/images/icon.svg'/></Link></Img>
+                <Link href="/"><Img><Image width='200px' height='60px' src='/images/icon.svg'/></Img></Link>
                 <ButtonWrapper>
-                    <HeaderButton text="Герои" key="1" />
-                    <HeaderButton text="Карты" key="2"/>
-                    <HeaderButton text="Авторы" key="3"/>
-                    <HeaderButton text="Новости" key="4"/>
+                    <HeaderButton url="/heroes" text="Герои" key="1" />
+                    <HeaderButton url='/maps' text="Карты" key="2"/>
+                    <HeaderButton url="/" text="Авторы" key="3"/>
+                    <HeaderButton url='https://zen.yandex.ru/id/5f81e9feafcf672f1465cb3b' text="Новости" key="4"/>
                 </ButtonWrapper>
                 <HeaderDownloadButton setDownloadPopup={props.setDownloadPopup} />
             </Content>

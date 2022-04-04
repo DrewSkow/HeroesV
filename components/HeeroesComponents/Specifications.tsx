@@ -49,11 +49,11 @@ const Field = styled.div`
 const descRow = (src:string, text:string, v:number) => {
     return (
     <Field>
-        <div className="">
+        <div>
             <Image width="20px" height="20px" src={`/images/${src}.svg`} />
             <p>{text}</p>
         </div>
-        <div className="">{v}</div>
+        <div >{v}</div>
     </Field> 
     )
 }

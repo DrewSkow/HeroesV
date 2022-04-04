@@ -4,14 +4,13 @@ const Wrapper = styled.div`
   position: relative;
     & video{
       width: 100vw;
-      margin-top: 80px;
     }
 `;
 
 const LabelText = styled.div`
   position: absolute;
-  top: calc(50vh - 121px);
-  left: calc(50% - 333px);
+  top: calc(50vh - 200px);
+  left: calc(50% - 375px);
   
   background: rgba(33, 30, 25, 0.6);
   box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.2);
@@ -49,8 +48,8 @@ export const Video = () => {
         <Wrapper>
           <video src="/images/video.mp4" autoPlay muted loop></video> 
             <LabelText>
-                <h2 className='headerStartText'>Heroes V Online <br/> модификация оригинальной <br/> Heroes of Might and Magic </h2>
-                <p className='subHeader'>Окунитесь с головой в мир Асхана вместе с HeroesV online</p>
+                <h2>Heroes V Online <br/> модификация оригинальной <br/> Heroes of Might and Magic </h2>
+                <p>Окунитесь с головой в мир Асхана вместе с Heroes V online</p>
             </LabelText>
         </Wrapper>
     )

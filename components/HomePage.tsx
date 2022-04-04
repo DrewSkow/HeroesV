@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import { Author, DescriptionBlock } from './homeComponents/DescriptionBlock';
+import { DescriptionBlock } from './homeComponents/DescriptionBlock';
 import { Video } from './homeComponents/VideoComponent';
 
 
@@ -12,36 +12,43 @@ const Wrapper = styled.div`
 
 `
 
-const Circle = styled.div<{left:string, top: string,}>`
-  
-  position: absolute;
-  width: 215px;
-  height: 198px;
-  left: ${props => props.left};
-  top: ${props => props.top};
+const Author = styled.div`
 
-  background: #F9A70E;
-  opacity: 0.5;
-  filter: blur(75px);
-  border-radius: 150px;
+    margin:100px auto 0 auto;
 
-`
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align:center;
+    color: #BEAB8D;
+
+    p{
+      font-family: 'Ubuntu';
+      font-style: normal;
+      font-weight: 500;
+        margin 0;
+        padding: 0;
+    }
+
+    p:first-child{
+        margin-bottom:15px;
+    }
+
+    h2{
+        font-family: "Antiqua";
+        font-style: italic;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 35px;
+        color: #F7F2E9;
+    }
+`;
 
 export function HomePage() {
 
   return (
     <Wrapper>
-      <Head>
-        <link href="/fonts/ANTQUAI.TTF" />
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"></link>
-      </Head>
-
       <Video/>      
-
-      <Circle left="1180px" top="1060px"/>
-      <Circle left="350px" top="1459px"/>
-
-
       <DescriptionBlock />
       <Author>
           <h2>Авторы</h2>

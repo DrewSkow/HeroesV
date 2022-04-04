@@ -34,12 +34,13 @@ export const LinkButton = styled.div <{fs: string, fh: string}>`
 
 interface Props{
     text: string;
+    url: string;
 }
 
 export const HeaderButton = (props:Props) => {
     return(
         <Wrapper>
-            <Link href="/heroes"><LinkButton fs="18px" fh="21px"><a>{props.text}</a></LinkButton></Link>
+            <Link href={props.url}><LinkButton fs="18px" fh="21px"><a>{props.text}</a></LinkButton></Link>
         </Wrapper>
     )
 }

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { LinkButton } from './HeaderButton';
@@ -6,6 +8,7 @@ const Wrapper = styled.div`
    width: 100%;
    background: #1B1914; 
    box-shadow: inset 0px 4px 10px rgba(255, 255, 255, 0.1);
+   margin-top: 100px;
 `
 
 const WrapperGrid = styled.div`
@@ -16,23 +19,26 @@ const WrapperGrid = styled.div`
     row-gap: 15px;
     padding-top: 30px;
     margin: 0 auto;
+`
+const Top = styled.div`
+    display: flex;
+    align-items: start;
+`
+const Bottom = styled.div`
+    display: flex;
+    align-items: end;
+`
+const Email = styled.div`
+    display: flex;
+    align-items: center;
+`
 
-    .eMail{
-        display: flex;
-        align-items: center;
-    }
+const Icons = styled.div`
+   display: flex;
+   align-items: center;
+   column-gap: 15px; 
 
-    .top{
-        display: flex;
-        align-items: start;
-    }
-
-    .bot{
-        display: flex;
-        align-items: end;
-    }
-
-    .icon{
+   img{
         width: 25px;
         height: 25px;
 
@@ -49,7 +55,7 @@ const WrapperGrid = styled.div`
         &:active{
             background: #FCD386;
         }
-    }
+   }
 `
 
 const Underline = styled.div`
@@ -156,20 +162,36 @@ export const Footer = (props: Props) => {
     return(
         <Wrapper>
             <WrapperGrid>
-                <img className="label" src="/images/icon.svg" alt="label" />
-                <LinkButton fs="16px" fh="18px" className='bot'><a>Персонажи</a></LinkButton>
-                <LinkButton fs="16px" fh="18px" className='bot'><a>Авторы</a></LinkButton>
-                <LinkButton fs="16px" fh="18px" className='bot'><a>Как подключиться</a></LinkButton>
+                <Image width="200px" height="60px" src="/images/icon.svg" />
+                <Bottom><LinkButton fs="16px" fh="18px"><Link href="/heroes"><a>Персонажи</a></Link></LinkButton></Bottom>
+                <Bottom><LinkButton fs="16px" fh="18px"><a>Авторы</a></LinkButton></Bottom>
+                <Bottom><LinkButton fs="16px" fh="18px"><Link href="/connect"><a>Как подключиться</a></Link></LinkButton></Bottom>
                 <Button onClick={()=>props.setDownloadPopup(true)}><div>Скачать</div></Button>
-                <LinkButton fs="16px" fh="18px" className='eMail' ><img className='icon' src='/images/mail_icon.svg' /><a onClick={toClipboard}><div className="" onClick={toClipboard}>Heroes-V-online@yandex.ru</div></a></LinkButton>
-                <LinkButton fs="16px" fh="18px" className='top'><a>Карты</a></LinkButton>
-                <LinkButton fs="16px" fh="18px" className='top'><a>Новости</a></LinkButton>
-                <div className='top'><a><img className='icon' src="/images/discord_icon.svg"/></a><a><img className='icon' src="/images/vk_icon.svg" /></a></div>
+                <Email>
+                    <LinkButton fs="16px" fh="18px" >
+                        <Icons>
+                            <Image width="25px" height="25px" src='/images/mail_icon.svg' />
+                            <a onClick={toClipboard}>
+                                <div onClick={toClipboard}>Heroes-V-online@yandex.ru</div>
+                            </a>
+                        </Icons>
+                    </LinkButton>
+                </Email>
+                <Top>
+                    <LinkButton fs="16px" fh="18px">
+                        <Link href="/maps"><a>Карты</a></Link>
+                    </LinkButton>
+                </Top>
+                <Top><LinkButton fs="16px" fh="18px"><Link href="https://zen.yandex.ru/id/5f81e9feafcf672f1465cb3b"><a>Новости</a></Link></LinkButton></Top>
+                <Icons>
+                    <Link href='https://discord.gg/X6GAqTe'><a><Image width="25px" height="25px" src="/images/discord_icon.svg"/></a></Link>
+                    <Link href=''><a><Image width="25px" height="25px" src="/images/vk_icon.svg" /></a></Link>
+                </Icons>
             </WrapperGrid>
             <Copied isShow={clipboardCheck}>Скопировано</Copied>
             <Underline>
-                <div className="">Heroes V Online © Copyright 2022 All rights reserved</div>
-                <div className="">Designed by <a href='https://www.behance.net/osavosko'>osavosko</a></div>
+                <div>Heroes V Online © Copyright 2022 All rights reserved</div>
+                <div>Designed by <a href='https://www.behance.net/osavosko'>osavosko</a></div>
             </Underline>
         </Wrapper>
     )

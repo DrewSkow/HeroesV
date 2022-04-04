@@ -131,15 +131,11 @@ export const HeroesComponent = () => {
     const [description, setDescription] = useState<"specifications" | "skills" | "biography" | "conditions">("specifications");
     return(
         <Wrapper>
-        <Head>
-            <link href="/fonts/ANTQUAI.TTF" />
-            <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"></link>
-        </Head>
             <Header>Персонажи</Header>
             <Content>
                 <Hero>
                     <Model>
-                        <div className=""><Image width="181px" height="202px" src='/images/hero.png'/></div>
+                        <div><Image width="181px" height="202px" src='/images/hero.png'/></div>
                         <Image width="180px" height="85px" src='/images/HeroesPlace.svg'/>
                     </Model>
                     <Name>Вульфстен</Name>

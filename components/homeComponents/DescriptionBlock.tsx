@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-
-    margin: 100px auto 0;
-    padding: 50px;
-
-    background: rgba(33, 30, 25, 0.5);
-    box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(30px);
-    border-radius: 5px;
-
-    max-width:880px;
-
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-    align-items: column;
+    max-width: 880px;
+    max-height: 500px;
+    margin: 120px auto 0 auto;
+    position: relative;
 
     h2{
         text-align:center;
@@ -27,27 +16,61 @@ const Wrapper = styled.div`
         line-height: 35px;
         color: #F7F2E9;
     }
-
-    .description{
-        margin: 25px auto 0;
-        font-size: 18px;
-        line-height: 21px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        color: #BEAB8D;
-    }
 `;
 
-const Features = styled.div`
 
+const WrapperCircle = styled.div`
+    position: relative;
+    width: 880px;
+    height: 460px;    
+    background: rgba(33, 30, 25, 0.4);
+    box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    z-index: 10;
+
+    &.c1{
+        display: block;
+        position: absolute;
+        top: -5%;
+        right: -2%;
+    }
+
+    .с2{
+        display: block;
+        position: absolute;
+        bottom: -5%;
+        left: -2%;
+    }
+`
+
+const Circle = styled.div <{vertical:string, horizontal:string}>`
+    width: 200px;
+    height: 200px;
+
+    ${props => props.vertical};
+    ${props => props.horizontal};
+
+    background: #F9A70E;
+    opacity: 0.4;
+    filter: blur(75px);
+    border-radius: 150px;
+    
+    position: absolute;
+    z-index: 1;
+
+`
+
+const FeaturesBlock = styled.div`
     display: flex;
     flex-wrap:wrap;
     justify-content:space-evenly;
     row-gap:20px;
     margin-top: 30px;
+`;
 
-    .feature{
+const Feature = styled.div`
         display:flex;
         align-items:center;
         justify-content:center;
@@ -62,115 +85,78 @@ const Features = styled.div`
         font-size: 18px;
         line-height: 21px;
         color: #F7F2E9;
-    }
-`;
+`
+
+const Description = styled.div`
+    margin: 25px auto 0;
+    text-align:center;
+    font-size: 18px;
+    line-height: 21px;
+    color: #BEAB8D;
+`
 
 const ButtonBlock = styled.div`
 
-    margin: 40px auto 0 auto;
-    display:flex;
-    column-gap:20px;
-    align-items:center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    button{
-        font-family: Ubuntu;
+    padding: 0 50px;
+    margin-top: 40px;
+
+    div{
+        font-family: 'Ubuntu';
+        font-style: normal;
         font-weight: 500;
         font-size: 18px;
         line-height: 21px;
         color: #BEAB8D;
+
+        padding: 15px 40px;
 
         border: 1px solid #BEAB8D;
+        box-sizing: border-box;
         filter: drop-shadow(0px 0px 10px rgba(249, 167, 14, 0.5));
         border-radius: 5px;
-        background:none;
-    
-        cursor:pointer;
-    }
+        cursor: pointer;
 
-    .server{
-        padding: 15px 42px;
-    }
-    .news{
-        padding: 15px 33px;
-    }
-    .pers{
-        padding: 15px 35px;
-    }
-    .map{
-        padding: 15px 42px;
-    }
+        &:hover{
+            background: rgba(190, 171, 141, 0.1);
+        }
 
-    button:hover{
-        background: rgba(190, 171, 141, 0.1);
-        border-color:#BEAB8D;
-        box-shadow: 0px 0px 10px rgba(249, 167, 14, 0.5);
-        border-radius: 5px;
-
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        color: #BEAB8D;
-    }
-
-    button:active{
-        background: #F9A70E;
-        color: #000000;
-        border-color: #F9A70E;
-    }
-    
+        &:active{
+            color: black;
+            background: #F9A70E;
+            border: 1px solid #F9A70E;      
+        }
+    }    
 `;
 
-export const Author = styled.div`
-
-    margin:100px auto 100px;
-
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 21px;
-    text-align:center;
-    color: #BEAB8D;
-
-    p{
-        margin 0;
-        padding: 0;
-    }
-
-    p:first-child{
-        margin-bottom:15px;
-    }
-
-    h2{
-        font-family: Antiqua;
-        font-style: italic;
-        font-weight: bold;
-        font-size: 36px;
-        line-height: 35px;
-        color: #F7F2E9;
-    }
-`;
 
 export const DescriptionBlock = () => {
-
-    
     return (
         <Wrapper>
-            <h2>Об игре</h2>
-            <Features>
-                <div className='feature'>Проведена полная балансировка игры</div>
-                <div className="feature">Реализовано проведение турниров</div>
-                <div className="feature">Добавлены новые персонажи и карты</div>
-                <div className="feature">Доступно 8 расс и более 60 арен</div>
-            </Features>
-            <div className="description">
-                Есть канал в дискорде, где вы сможете узнать всю информацию о данной версии <br/>
-                Только с этой версией вы сможете играть вместе с другими игроками
-            </div>
-            <ButtonBlock>
-                <button className='server'>Наш сервер в Discord</button>
-                <button className='news'>Новости</button>
-                <button className='pers'>Персонажи</button>
-                <button className='map'>Карты</button>
-            </ButtonBlock>
+            <WrapperCircle>
+                <h2>Об игре</h2>
+                <FeaturesBlock>
+                    <Feature>Проведена полная балансировка игры</Feature>
+                    <Feature>Реализовано проведение турниров</Feature>
+                    <Feature>Добавлены новые персонажи и карты</Feature>
+                    <Feature>Доступно 8 расс и более 60 арен</Feature>
+                </FeaturesBlock>
+                <Description>
+                    Есть канал в дискорде, где вы сможете узнать всю информацию о данной версии <br/>
+                    Только с этой версией вы сможете играть вместе с другими игроками
+                </Description>
+                <ButtonBlock>
+                    <Link href="https://discord.gg/X6GAqTe"><div>Наш сервер в Discord</div></Link>
+                    <Link href='https://zen.yandex.ru/id/5f81e9feafcf672f1465cb3b'><div>Новости</div></Link>
+                    <Link href='/heroes'><div>Персонажи</div></Link>
+                    <Link href='/maps'><div>Карты</div></Link>
+                </ButtonBlock>
+            </WrapperCircle>
+            <Circle vertical='top: -5%;' horizontal='right: -2%;'/>
+            <Circle vertical='bottom: -5%;' horizontal='left: -2%;'/>
         </Wrapper>
     )
 }
